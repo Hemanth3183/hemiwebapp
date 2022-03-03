@@ -14,7 +14,7 @@ variables:
   imageRepository: 'hemiwebapp'
   containerRegistry: '$(azure.acr)'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId):$SHA'
+  tag: '$(Build.BuildId):$(GIT_COMMIT)'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
