@@ -12,7 +12,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'f3778952-dec2-421d-9b12-8a3795aa7851'
   imageRepository: 'hemiwebapp'
-  containerRegistry: 'hemiacr.azurecr.io'
+  containerRegistry: '$(azure.acr)'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
@@ -32,8 +32,8 @@ stages:
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
+        repository: $(imageRepository)/client
+        dockerfile: $(dockerfilePath)/client
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
